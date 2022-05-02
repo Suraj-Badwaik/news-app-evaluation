@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>News App</title>
+    <link rel="stylesheet" href="./styles/index.css">
+  </head>
+  <body>
+    <!-- Give Navbar with id "navbar"  -->
+    <!-- Navbar will have input with id search_input and a link to home page i.e. index.html -->
+    <!-- Sidebar will have id "sidebar"  -->
+    <!-- Give link to top headlines of countries in sidebar with id as their country codes 
+    india :- in
+    china :- ch
+    usa :- us
+    uk : uk
+    Newzeland :- nz -->
+
+    <!-- Append results inside div with id "results"  -->
+    <!-- News divs will have class "news"  -->
+
+    <div id="navbar">
+
+    </div>
+
+    <div id="main">
+      <div id="sidebar">
+          <p id="in">India</p>
+          <p id="us">Usa</p>
+          <p id="ch">China</p>
+          <p id="uk">UK</p>
+          <p id="nz">New Zealand</p>
+      </div>
+
+
+      <div id="results">
+
+      </div>
+    </div>
+  </body>
+</html>
+<script type="module">
+  
+import { navbar } from "../components/navbar.js";
+
+let nav = document.getElementById('navbar');
+
+nav.innerHTML = navbar();
+
+
+let searchNews = async (e) =>{
+
+if(e.key==='Enter'){
+     let search = document.getElementById('search_input').value ;
+     try{
+         const res = await fetch (`https://masai-mock-api.herokuapp.com/news?q=${search}`);
+
+         let data  = await res.json();
+        //  console.log('data:', data)
+
+         let news = data.articles;
+         console.log('news:', news)
+         go()
+        
+
+        localStorage.setItem('savedNews',JSON.stringify(news));
+
+         return news;
+
+         
+     }
+     catch(err){
+         console.log('err:', err)
+        }
+        
+      }
+    }
+    
+    document.getElementById('search_input').addEventListener('keydown',searchNews);
+    
+    function go(){
+      
+      window.location.href ="search.html"; 
+}
+
+
+
+</script>
+
+
+<script src="./scripts/index.js" ></script>

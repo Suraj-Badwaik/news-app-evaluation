@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Detailed news</title>
+    <link rel="stylesheet" href="./styles/news.css">
+    <link rel="stylesheet" href="./styles/index.css">
+  </head>
+  <body>
+    <!-- Same navbar with same functionality  -->
+    <!-- Append detailed news in div with id "detailed_news"  -->
+    <div id="navbar">
+
+    </div>
+
+    <h1>Detailed News</h1>
+    <div id="detailed_news">
+
+    </div>
+
+  </body>
+</html>
+<script type="module">
+    
+import { navbar } from "../components/navbar.js";
+
+let nav = document.getElementById('navbar');
+
+nav.innerHTML = navbar()
+</script>
+<script src="./scripts/news.js"></script>
